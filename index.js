@@ -37,30 +37,73 @@ const occupations = [
   "Physician",
   "Data Scientist",
 ];
+ function makeTableRow(parentContainer, textContent){
 
+ }
 function init() {
   /**
    * 👉 STEP 1: Grab the div with the id of "root"
    */
+  const rooTtContainer = document.getElementById("root")
   /**
    * 👉 STEP 2:
    *    Create a new h1 element that says "Freelancer Forum"
    *    Add the new h1 to the root div
    */
+  const heading = document.createElement("h1")
+  heading.textContent = "Freelancer Forum"
+  rooTtContainer.appendChild(heading)
   /**
    * 👉 STEP 3:
    *    Create a table to hold our Freelancers in
    */
+  const table = document.createElement("table")
+  const col1 = document.createElement("td")
+  col1.textContent = "Name"
+  table.appendChild(col1)
+  /**
+   * �� STEP 4:
+   *    Create a function to render the Freelancers in our Freelancers array
+   */
+  function renderFreelancers(freelancers) {
+    const tbody = document.createElement("tbody")
+    table.appendChild(tbody)
+    freelancers.forEach((freelancer) => {
+      const row = document.createElement("tr")
+      tbody.appendChild(row)
+      Object.values(freelancer).forEach((value) => {
+        const cell = document.createElement("td")
+        cell.textContent = value
+        row.appendChild(cell)
+      })
+    })
+  }
+  renderFreelancers(freelancers)
+  /**
+   * �� STEP 6:
+   *    Create a function to add a new Freelancer to the Freelancers array
+   */
+  function addFreelancer() {
+    const newName = names[Math.floor(Math.random() * names.length)]
+    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)]
+    const newFreelancer = { name: newName, occupation: newOccupation, price: Math.floor(Math.random() * 100) + 1 }
+    freelancers.push(newFreelancer)
+    renderFreelancers(freelancers)
+  }
+  setInterval(addFreelancer, 1000) //add a new freelancer every second
+  rooTtContainer.appendChild(table)
   /**
    * 👉 STEP 5:
    *    Call the function you created in step 4
    */
+  renderFreelancers(freelancers)
 }
 
 /**
  * 👉 STEP 4:
  *    Create a function to render the Freelancers in our Freelancers array
  */
+
 
 /**
  * 👉 STEP 6:
