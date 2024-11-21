@@ -44,20 +44,20 @@ function init() {
   /**
    * 👉 STEP 1: Grab the div with the id of "root"
    */
-  const rooTtContainer = document.getElementById("root")
+  const rootContainer = document.getElementById("root");
   /**
    * 👉 STEP 2:
    *    Create a new h1 element that says "Freelancer Forum"
    *    Add the new h1 to the root div
    */
-  const heading = document.createElement("h1")
-  heading.textContent = "Freelancer Forum"
-  rooTtContainer.appendChild(heading)
+  const heading = document.createElement("h1");
+  heading.textContent = "Freelancer Forum";
+  rootContainer.appendChild(heading);
   /**
    * 👉 STEP 3:
    *    Create a table to hold our Freelancers in
    */
-  const table = document.createElement("table")
+  const table = document.createElement("table");
   const col1 = document.createElement("td")
   col1.textContent = "Name"
   table.appendChild(col1)
@@ -83,6 +83,7 @@ function init() {
    * �� STEP 6:
    *    Create a function to add a new Freelancer to the Freelancers array
    */
+  const names = "Alice", "Edward", "Etornam", "Nunyala", "Nunyati"
   function addFreelancer() {
     const newName = names[Math.floor(Math.random() * names.length)]
     const newOccupation = occupations[Math.floor(Math.random() * occupations.length)]
