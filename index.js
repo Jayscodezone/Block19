@@ -61,6 +61,15 @@ function init() {
   const col1 = document.createElement("td")
   col1.textContent = "Name"
   table.appendChild(col1)
+
+  const tr1 = document.createElement("tr")
+  tr1.textContent="Bob";
+  const tr2 = document.createElement("tr")
+  tr2.textContent="Emily";
+  table.append(tr1,tr2);
+
+  rootContainer.appendChild(table);
+
   /**
    * �� STEP 4:
    *    Create a function to render the Freelancers in our Freelancers array
@@ -78,43 +87,28 @@ function init() {
       })
     })
   }
-  renderFreelancers(freelancers)
-  /**
-   * �� STEP 6:
-   *    Create a function to add a new Freelancer to the Freelancers array
-   */
-  const names = "Alice", "Edward", "Etornam", "Nunyala", "Nunyati"
-  function addFreelancer() {
-    const newName = names[Math.floor(Math.random() * names.length)]
-    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)]
-    const newFreelancer = { name: newName, occupation: newOccupation, price: Math.floor(Math.random() * 100) + 1 }
-    freelancers.push(newFreelancer)
-    renderFreelancers(freelancers)
-  }
-  setInterval(addFreelancer, 1000) //add a new freelancer every second
-  rooTtContainer.appendChild(table)
   /**
    * 👉 STEP 5:
    *    Call the function you created in step 4
    */
   renderFreelancers(freelancers)
-}
-
-/**
- * 👉 STEP 4:
- *    Create a function to render the Freelancers in our Freelancers array
- */
 
 
 /**
  * 👉 STEP 6:
  *    Create a function to add a new Freelancer to the Freelancers array
  */
-
+  function addFreelancer() {
+    const newName = names[Math.floor(Math.random() * names.length)]
+    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)]
+    const newFreelancer = { name: newName, occupation: newOccupation, price: Math.floor(Math.random() * 100) + 1 }
+    freelancers.push(newFreelancer)
+    renderFreelancers(freelancers)
 /**
  * 👉 STEP 7:
  *    Add an interval to add a new Freelancer every second
+ * 
  */
-
+setInterval(addFreelancer, 1000);
 //call init function
-init();
+init() ;
