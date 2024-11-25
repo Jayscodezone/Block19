@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  background-color: black;
+  background-color: rgb(198, 46, 84);
   color: #aadeee;
 }
 
@@ -21,5 +21,5 @@ th {
 
 tr:nth-child(odd) {
   background-color: #bbbbbb;
-  color: black;
+  color: green;
 }

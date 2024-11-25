@@ -58,40 +58,48 @@ function init() {
    *    Create a table to hold our Freelancers in
    */
   const table = document.createElement("table");
-  const col1 = document.createElement("td")
-  col1.textContent = "Name"
-  table.appendChild(col1)
+  const header= document.createElement("thead");
+  const headerRow = document.createElement("tr");
+  const headers = ["Name", "Price", "Occupation"];
 
-  const tr1 = document.createElement("tr")
-  tr1.textContent="Bob";
-  const tr2 = document.createElement("tr")
-  tr2.textContent="Emily";
-  table.append(tr1,tr2);
+  headers.forEach((headerText) => {
+    const th = document.createElement("th");
+    th.textContent = headerText;
+    headerRow.appendChild(th);
+  });
+  header.appendChild(headerRow);
+  table.appendChild(header); // Append the table header to the table
+  rootContainer.appendChild(table); // Append the table to the root div
 
-  rootContainer.appendChild(table);
 
   /**
    * �� STEP 4:
    *    Create a function to render the Freelancers in our Freelancers array
    */
   function renderFreelancers(freelancers) {
-    const tbody = document.createElement("tbody")
-    table.appendChild(tbody)
+    const tbody = document.createElement("tbody");
     freelancers.forEach((freelancer) => {
-      const row = document.createElement("tr")
-      tbody.appendChild(row)
+      const row = document.createElement("tr");
       Object.values(freelancer).forEach((value) => {
-        const cell = document.createElement("td")
-        cell.textContent = value
-        row.appendChild(cell)
-      })
-    })
+        const cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      tbody.appendChild(row);
+    });
+
+    // append new rows
+
+    if (table.querySelector("tbody")) {
+      table.removeChild(table.querySelector("tbody"));
+    }
+    table.appendChild(tbody);
   }
   /**
    * 👉 STEP 5:
    *    Call the function you created in step 4
    */
-  renderFreelancers(freelancers)
+    renderFreelancers(freelancers);
 
 
 /**
@@ -99,16 +107,21 @@ function init() {
  *    Create a function to add a new Freelancer to the Freelancers array
  */
   function addFreelancer() {
-    const newName = names[Math.floor(Math.random() * names.length)]
-    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)]
+    const newName = names[Math.floor(Math.random() * names.length)];
+    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)];
     const newFreelancer = { name: newName, occupation: newOccupation, price: Math.floor(Math.random() * 100) + 1 }
-    freelancers.push(newFreelancer)
-    renderFreelancers(freelancers)
+    freelancers.push(newFreelancer);
+    renderFreelancers(freelancers);
+  }
 /**
  * 👉 STEP 7:
  *    Add an interval to add a new Freelancer every second
  * 
  */
+
 setInterval(addFreelancer, 1000);
+}
+
 //call init function
-init() ;
+init();
+
