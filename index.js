@@ -71,7 +71,19 @@ function init() {
   table.appendChild(header); // Append the table header to the table
   rootContainer.appendChild(table); // Append the table to the root div
 
+// Calculate average price  and update the Dom 
+const averagePriceDiv = document.createElement("h2");
+averagePriceDiv.id = "average-price";
+rootContainer.appendChild(averagePriceDiv);
 
+function updateAveragePrice() {
+  if (freelancers.length === 0) return;
+
+  const total = freelancers.reduce((sum, freelancer) => sum + freelancer.price, 0);
+  const average = (total / freelancers.length).toFixed(2);
+
+  document.getElementById("average-price").textContent = `Average Price: $${average}`;
+}
   /**
    * �� STEP 4:
    *    Create a function to render the Freelancers in our Freelancers array
@@ -94,29 +106,39 @@ function init() {
       table.removeChild(table.querySelector("tbody"));
     }
     table.appendChild(tbody);
+   
+    //update Average Price 
+    updateAveragePrice(freelancers);
   }
+
+
+
+
   /**
    * 👉 STEP 5:
    *    Call the function you created in step 4
    */
     renderFreelancers(freelancers);
+  
 
 
 /**
  * 👉 STEP 6:
  *    Create a function to add a new Freelancer to the Freelancers array
  */
-  function addFreelancer() {
-    const newName = names[Math.floor(Math.random() * names.length)];
-    const newOccupation = occupations[Math.floor(Math.random() * occupations.length)];
-    const newFreelancer = { name: newName, occupation: newOccupation, price: Math.floor(Math.random() * 100) + 1 }
-    freelancers.push(newFreelancer);
-    renderFreelancers(freelancers);
-  }
+function addFreelancer() {
+  const newName = names[Math.floor(Math.random() * names.length)];
+  const newOccupation = occupations[Math.floor(Math.random() * occupations.length)];
+  const newPrice = Math.floor(Math.random() * 100) + 1;
+
+  const newFreelancer = { name: newName, price: newPrice, occupation: newOccupation };
+  freelancers.push(newFreelancer);
+
+  renderFreelancers(freelancers);
+}
 /**
  * 👉 STEP 7:
  *    Add an interval to add a new Freelancer every second
- * 
  */
 
 setInterval(addFreelancer, 1000);
